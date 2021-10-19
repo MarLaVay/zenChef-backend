@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,7 +21,8 @@ public class Chef implements Serializable {
     private String name;
     private String firstname;
     private String password;
-    @OneToMany
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chef")
     private List<Recipe> recipes;
 
 }

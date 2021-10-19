@@ -11,10 +11,10 @@ import java.io.Serializable;
 @Entity
 @Getter @Setter
 public class Ingredient implements Serializable {
+	
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-
 
 }
