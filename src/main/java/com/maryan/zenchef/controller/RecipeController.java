@@ -1,20 +1,21 @@
 package com.maryan.zenchef.controller;
 
+import com.maryan.zenchef.model.DTO.CreateRecipeDTO;
+import com.maryan.zenchef.repository.RecipeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
-	
+
+	RecipeRepository recipeRepository;
+
 	@PostMapping
-	public ResponseEntity<Void> createRecipe() {
-		
+	public ResponseEntity<Void> createRecipe(@RequestBody CreateRecipeDTO recipeDTO) {
+
+		recipeRepository.save(recipeDTO.toEntity());
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	

@@ -19,4 +19,7 @@ public class Quantity implements Serializable {
     private String type;
     @ManyToOne
     private Ingredient ingredient;
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 }
