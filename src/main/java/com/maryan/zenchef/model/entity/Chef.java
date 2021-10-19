@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class User implements Serializable {
+public class Chef implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
