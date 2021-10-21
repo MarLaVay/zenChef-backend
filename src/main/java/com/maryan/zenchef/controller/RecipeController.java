@@ -1,6 +1,7 @@
 package com.maryan.zenchef.controller;
 
 import com.maryan.zenchef.model.DTO.CreateRecipeDTO;
+import com.maryan.zenchef.model.DTO.RecipeDTO;
 import com.maryan.zenchef.model.entity.Recipe;
 import com.maryan.zenchef.repository.ChefRepository;
 import com.maryan.zenchef.repository.RecipeRepository;
@@ -27,9 +28,9 @@ public class RecipeController {
 
 
 	@GetMapping("/{idRecipe}")
-	public ResponseEntity<Recipe> getOneRecipe(@PathVariable("idRecipe") Long id) {
+	public ResponseEntity<RecipeDTO> getOneRecipe(@PathVariable("idRecipe") Long id) {
 
-		return ResponseEntity.ok(recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("pas de recette")));
+		return ResponseEntity.ok(new RecipeDTO(recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("pas de recette"))));
 	}
 
 	@PostMapping

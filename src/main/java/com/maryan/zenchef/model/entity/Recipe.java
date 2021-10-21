@@ -20,7 +20,6 @@ public class Recipe implements Serializable {
     private Long id;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
     private Chef chef;
 
     private String title;

@@ -46,7 +46,7 @@ public class IngredientController {
 						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
 		ingredientRepository.delete(ingredientToDelete);
 
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
