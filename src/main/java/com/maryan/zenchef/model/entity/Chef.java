@@ -29,7 +29,7 @@ public class Chef implements Serializable {
     private String firstname;
     private String password;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chef")
-    private List<Recipe> recipes;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "chef")
+    private List<Recipe> recipes = new ArrayList<>();
 
 }
