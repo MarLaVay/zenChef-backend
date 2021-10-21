@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IngredientController {
 	
 	@PostMapping
+<<<<<<< Updated upstream
 	public ResponseEntity<Void> createIngredient() {
 		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
@@ -22,11 +23,33 @@ public class IngredientController {
 	public ResponseEntity<Void> updateIngredient() {
 		
 		return new ResponseEntity<Void>(HttpStatus.OK);
+=======
+	public ResponseEntity<Ingredient> createIngredient(@RequestBody IngredientDTO ingredientDTO) {
+
+		return ResponseEntity.ok(ingredientRepository.save(ingredientDTO.toEntity()));
+	}
+	
+	@PutMapping
+	public ResponseEntity<Ingredient> updateIngredient(@RequestBody IngredientDTO ingredientDTO) {
+
+		Ingredient ingredientToUpdate = ingredientRepository
+				.findById(ingredientDTO.getId())
+				.orElseThrow(
+						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
+		ingredientToUpdate.setName(ingredientDTO.getName());
+
+		return ResponseEntity.ok(ingredientRepository.save(ingredientToUpdate));
+>>>>>>> Stashed changes
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<Void> deleteIngredient() {
-		
+	public ResponseEntity<Void> deleteIngredient(@RequestBody Long ingredientID) {
+		Ingredient ingredientToDelete = ingredientRepository
+				.findById(ingredientID)
+				.orElseThrow(
+						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
+		ingredientRepository.delete(ingredientToDelete);
+
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
