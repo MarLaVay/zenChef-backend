@@ -1,6 +1,7 @@
 package com.maryan.zenchef.model.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Ingredient implements Serializable {
 	
     @Id
@@ -17,4 +19,7 @@ public class Ingredient implements Serializable {
     private Long id;
     private String name;
 
+    public Ingredient(String name) {
+        this.name = name;
+    }
 }

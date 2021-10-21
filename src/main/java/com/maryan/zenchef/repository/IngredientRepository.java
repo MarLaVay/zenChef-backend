@@ -1,9 +1,9 @@
 package com.maryan.zenchef.repository;
 
-import com.maryan.zenchef.model.entity.Recipe;
+import com.maryan.zenchef.model.entity.Ingredient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 }
