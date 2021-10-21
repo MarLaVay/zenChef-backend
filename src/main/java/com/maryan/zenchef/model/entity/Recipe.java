@@ -1,35 +1,34 @@
 package com.maryan.zenchef.model.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Recipe implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Chef chef;
 
     private String title;
     private String method;
     
    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe")
-    private List<Quantity> quantities;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
+    @JsonManagedReference
+    private List<Quantity> quantities = new ArrayList<>();
 
 }

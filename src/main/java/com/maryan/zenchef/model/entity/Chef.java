@@ -1,18 +1,18 @@
 package com.maryan.zenchef.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Chef implements Serializable {
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class Chef implements Serializable {
     private String firstname;
     private String password;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chef")
-    private List<Recipe> recipes;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "chef")
+    private List<Recipe> recipes = new ArrayList<>();
 
 }

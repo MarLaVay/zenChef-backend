@@ -24,18 +24,28 @@ public class IngredientController {
 	public ResponseEntity<Ingredient> createIngredient(@RequestBody IngredientDTO ingredientDTO) {
 
 		return ResponseEntity.ok(ingredientRepository.save(ingredientDTO.toEntity()));
-//		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Void> updateIngredient() {
+	public ResponseEntity<Ingredient> updateIngredient(@RequestBody IngredientDTO ingredientDTO) {
 
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		Ingredient ingredientToUpdate = ingredientRepository
+				.findById(ingredientDTO.getId())
+				.orElseThrow(
+						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
+		ingredientToUpdate.setName(ingredientDTO.getName());
+
+		return ResponseEntity.ok(ingredientRepository.save(ingredientToUpdate));
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<Void> deleteIngredient() {
-		
+	public ResponseEntity<Void> deleteIngredient(@RequestBody Long ingredientID) {
+		Ingredient ingredientToDelete = ingredientRepository
+				.findById(ingredientID)
+				.orElseThrow(
+						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
+		ingredientRepository.delete(ingredientToDelete);
+
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
