@@ -1,18 +1,25 @@
 package com.maryan.zenchef.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.io.Serializable;
-import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@Builder 
+@AllArgsConstructor
+@NoArgsConstructor
 public class Chef implements Serializable {
     @Id
     @GeneratedValue
