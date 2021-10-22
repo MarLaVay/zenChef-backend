@@ -13,12 +13,5 @@ public class RecipeDTO {
     private String method;
     private List<QuantityDTO> quantityDTOList = new ArrayList<>();
 
-    public RecipeDTO(Recipe recipe) {
-        this.id = recipe.getId();
-        this.title = recipe.getTitle();
-        this.method = recipe.getMethod();
-        recipe.getQuantities().forEach(quantity -> {
-            QuantityDTO quantityDTO = new QuantityDTO(quantity);
-            this.quantityDTOList.add(quantityDTO);});
-    }
+
 }

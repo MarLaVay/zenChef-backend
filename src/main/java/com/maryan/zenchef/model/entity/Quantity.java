@@ -16,7 +16,7 @@ public class Quantity implements Serializable {
     @GeneratedValue
     private Long id;
     private int number;
-    private String type;
+    private String measuringUnit;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Recipe recipe;
