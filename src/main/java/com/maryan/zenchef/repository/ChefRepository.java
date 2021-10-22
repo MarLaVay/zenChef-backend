@@ -1,10 +1,18 @@
 package com.maryan.zenchef.repository;
 
-import com.maryan.zenchef.model.entity.Chef;
-import com.maryan.zenchef.model.entity.Recipe;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-@Repository
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.maryan.zenchef.model.entity.Chef;
+
 public interface ChefRepository extends JpaRepository<Chef, Long> {
+
+	Optional<Chef> findByNameOrEmail(String nameOrEmail, String usernameOrEmail);
+	
+	Optional<Chef> findByName(String name);
+	
+	boolean existsByName(String username);
+	
+	boolean existsByEmail(String email);
 }
