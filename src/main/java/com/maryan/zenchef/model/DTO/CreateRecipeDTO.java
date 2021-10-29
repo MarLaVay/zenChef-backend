@@ -1,19 +1,20 @@
 package com.maryan.zenchef.model.DTO;
 
-import com.maryan.zenchef.model.entity.Quantity;
-import com.maryan.zenchef.model.entity.Recipe;
-import com.maryan.zenchef.repository.ChefRepository;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter @Setter
-public class CreateRecipeDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CreateRecipeDTO implements Serializable {
     private String title;
     private String method;
-    private List<QuantityDTO> quantityDTOS;
+    private List<CreateQuantityDTO> quantityDTOList;
 
 
 //    public Recipe toEntity() {

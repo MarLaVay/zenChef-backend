@@ -7,20 +7,27 @@ import com.maryan.zenchef.model.entity.Quantity;
 import com.maryan.zenchef.model.entity.Recipe;
 import com.maryan.zenchef.repository.ChefRepository;
 import com.maryan.zenchef.repository.IngredientRepository;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@Transactional
 public class RecipeService {
 
     ChefRepository chefRepository;
     IngredientRepository ingredientRepository;
+    UserService userService;
 
 
     public RecipeService(ChefRepository chefRepository,
-                         IngredientRepository ingredientRepository) {
+                         IngredientRepository ingredientRepository,
+                         UserService userService) {
         this.chefRepository = chefRepository;
         this.ingredientRepository = ingredientRepository;
+        this.userService = userService;
     }
 
     /**
@@ -33,12 +40,12 @@ public class RecipeService {
         newRecipe.setTitle(recipeDTO.getTitle());
         newRecipe.setMethod(recipeDTO.getMethod());
 
-        //relie la recette à un chef - TODO le relier au chef de la session
-        newRecipe.setChef(chefRepository.findById(1L).orElseThrow());
+        //relie la recette à un chef
+        newRecipe.setChef(userService.getAuthenticatedUser());
 
         //crée les entités des quantités et les relie à la recette
         List<Quantity> quantities = new ArrayList<>();
-        recipeDTO.getQuantityDTOS()
+        recipeDTO.getQuantityDTOList()
                 .forEach(quantityDTO ->
                 {
                     Quantity newQuantity = new Quantity();

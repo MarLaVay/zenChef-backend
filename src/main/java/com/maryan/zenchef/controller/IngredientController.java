@@ -38,8 +38,8 @@ public class IngredientController {
 		return ResponseEntity.ok(ingredientRepository.save(ingredientToUpdate));
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<Void> deleteIngredient(@RequestBody Long ingredientID) {
+	@DeleteMapping("/{ingredientID}")
+	public ResponseEntity<Void> deleteIngredient(@PathVariable("ingredientID") Long ingredientID) {
 		Ingredient ingredientToDelete = ingredientRepository
 				.findById(ingredientID)
 				.orElseThrow(

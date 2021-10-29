@@ -12,11 +12,11 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuantityDTO implements Serializable {
+public class CreateQuantityDTO implements Serializable {
     private Long id;
     private float number;
     private String measuringUnit;
-    private IngredientDTO ingredientDTO;
+    private Long ingredientID;
 
 
 
@@ -24,10 +24,10 @@ public class QuantityDTO implements Serializable {
     /*
     Quantity -> QuantityDTO
      */
-    public QuantityDTO(Quantity quantity) {
+    public CreateQuantityDTO(Quantity quantity) {
         this.id = quantity.getId();
         this.number = quantity.getNumber();
         this.measuringUnit = quantity.getMeasuringUnit();
-        this.ingredientDTO = new IngredientDTO(quantity.getIngredient());
+//        this.ingredientDTO = new IngredientDTO(quantity.getIngredient());
     }
 }
