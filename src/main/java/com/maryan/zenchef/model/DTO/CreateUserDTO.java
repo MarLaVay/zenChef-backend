@@ -12,9 +12,7 @@ import lombok.Setter;
 public class CreateUserDTO implements Serializable {
 	
 	private String userName;
-	private String displayName;
 	private String email;
 	private String password;
-	private String bio;
 
 }

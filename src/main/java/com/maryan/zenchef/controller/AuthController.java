@@ -33,9 +33,9 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @PostMapping( value = "/signin", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<?> authenticateUser(@RequestParam String usernameOrEmail, @RequestParam String password) {
+    public ResponseEntity<?> authenticateUser(@RequestParam String nameOrEmail, @RequestParam String password) {
 
-    	final String token = userService.login(new LoginRequest(usernameOrEmail, password));
+    	final String token = userService.login(new LoginRequest(nameOrEmail, password));
     	
     	final Chef user = userService.getAuthenticatedUser();
     	
