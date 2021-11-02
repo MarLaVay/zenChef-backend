@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe implements Serializable {
@@ -19,15 +19,14 @@ public class Recipe implements Serializable {
     @GeneratedValue
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Chef chef;
 
     private String title;
     private String method;
     
    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "recipe")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe")
     @JsonManagedReference
     private List<Quantity> quantities = new ArrayList<>();
 

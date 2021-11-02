@@ -1,28 +1,26 @@
 package com.maryan.zenchef.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Quantity implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private int number;
-    private String type;
+    private float number;
+    private String measuringUnit;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     private Recipe recipe;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Ingredient ingredient;
 }

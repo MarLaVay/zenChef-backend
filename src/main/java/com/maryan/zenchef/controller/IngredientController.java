@@ -38,15 +38,15 @@ public class IngredientController {
 		return ResponseEntity.ok(ingredientRepository.save(ingredientToUpdate));
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<Void> deleteIngredient(@RequestBody Long ingredientID) {
+	@DeleteMapping("/{ingredientID}")
+	public ResponseEntity<Void> deleteIngredient(@PathVariable("ingredientID") Long ingredientID) {
 		Ingredient ingredientToDelete = ingredientRepository
 				.findById(ingredientID)
 				.orElseThrow(
 						() -> new RuntimeException("cet ingrédient n'existe pas en BDD"));
 		ingredientRepository.delete(ingredientToDelete);
 
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
