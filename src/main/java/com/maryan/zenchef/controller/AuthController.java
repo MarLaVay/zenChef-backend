@@ -51,7 +51,8 @@ public class AuthController {
                  .fromCurrentContextPath().path("/api/users/{username}")
                  .buildAndExpand(userCreated.getName()).toUri();
          
-         return ResponseEntity.created(location).body(new ApiResponse(true, "Utilisateur enregistré avec succès"));
+         return ResponseEntity.status(201).body(new ApiResponse(true, "Bienvenue " + userCreated.getName() + ". Ton compte est créé !"));
+//         return ResponseEntity.ok(userCreated);
     }
     
     @GetMapping( value =  "/access-token")

@@ -3,6 +3,7 @@ package com.maryan.zenchef.service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import com.maryan.zenchef.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,9 +42,13 @@ public class UserService{
     public Chef getAuthenticatedUser() {
     	
     	final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	
+//        UserPrincipal customUser = (UserPrincipal) authentication.getPrincipal();
+//        Long customUserID = customUser.getId();
+
     	return userRepository.findByName(authentication.getName())
 			.orElseThrow(() -> new EntityNotFoundException("Utilisateur non trouvé"));
+//    	return userRepository.findByName(authentication.getName())
+//			.orElseThrow(() -> new EntityNotFoundException("Utilisateur non trouvé"));
     }
 
     /**

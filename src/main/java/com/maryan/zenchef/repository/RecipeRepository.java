@@ -15,4 +15,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 //    List<Recipe> findRecipesByChef(Long chefID);
 
     List<Recipe> findAllByChef(Chef chef);
+    List<Recipe> findAllByChefEquals(Long ID);
 }
